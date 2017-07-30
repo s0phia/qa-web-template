@@ -4,7 +4,7 @@ import com.db.am.bauhaus.project.SearchFor;
 import com.db.am.bauhaus.project.SearchTarget;
 import com.db.am.bauhaus.project.SessionVar;
 import com.db.am.bauhaus.project.pages.MainSearchPage;
-import com.db.am.bauhaus.project.steplib.SearchUser;
+import com.db.am.bauhaus.project.steplib.SearchSteps;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -15,6 +15,8 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.annotations.Steps;
 
+import java.util.*;
+
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -24,7 +26,7 @@ import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 /**
  * Created by ongshir on 05/10/2016.
  */
-public class SearchSteps {
+public class SearchStorySteps {
 
     @Before
     public void before() {
@@ -32,7 +34,7 @@ public class SearchSteps {
     }
 
     @Steps
-    SearchUser user;
+    SearchSteps searchSteps;
 
     MainSearchPage mainSearchPage;
 
@@ -48,7 +50,18 @@ public class SearchSteps {
 
     @When("^he searches for a product from the input box$")
     public void search_from_input_box() {
-        user.search_from_input_box();
+        searchSteps.search_from_input_box();
+    }
+
+    @When("^he searches for a product: '(.*)' from the drop-down menu$")
+    public void search_from_drop_down(String menuItems) {
+        List<String> menuItemList = Arrays.asList(menuItems.split("/"));
+        searchSteps.search_from_drop_down_menu(menuItemList);
+    }
+
+    @When("^he searches for a product '(.*)' from the icons$")
+    public void search_from_icons(String iconName) {
+        searchSteps.search_from_icons(iconName);
     }
 
     @When("^he searches for a product from the input box \\(screenplay\\)$")
@@ -58,8 +71,12 @@ public class SearchSteps {
 
     @Then("^the result should be displayed$")
     public void verify_search_result() {
-        user.verify_result_for_top_categories();
-        user.verify_result_for_all_categories();
+        searchSteps.verify_result_for_top_categories();
+    }
+
+    @Then("^the result should be displayed on page with header$")
+    public void verify_search_result_on_page() {
+        searchSteps.verify_result_for_all_categories();
     }
 
     @Then("^the result should be displayed \\(screenplay\\)$")
