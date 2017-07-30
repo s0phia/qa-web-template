@@ -38,8 +38,8 @@ public class SearchStorySteps {
 
     MainSearchPage mainSearchPage;
 
-    @Given("^John is viewing the Etsy landing page$")
-    public void goto_landing_page() {
+    @Given("^(John|he) is viewing the Etsy landing page$")
+    public void goto_landing_page(String theUser) {
         mainSearchPage.open();
     }
 
