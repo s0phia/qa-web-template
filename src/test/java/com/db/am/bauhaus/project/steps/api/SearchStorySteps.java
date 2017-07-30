@@ -9,7 +9,7 @@ import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 
 /**
- * Created by s0phia on 30/07/2017.
+ * Created by sansong on 30/07/2017.
  */
 public class SearchStorySteps {
 
@@ -49,4 +49,8 @@ public class SearchStorySteps {
         searchSteps.verify_listing_not_found_message();
     }
 
+    @Then("^an unsuccessful response is returned with status (.*) and message (.*)$")
+    public void unsuccessful_response_with_status_and_message(int status, String message) {
+        searchSteps.verify_status_and_message(status, message);
+    }
 }

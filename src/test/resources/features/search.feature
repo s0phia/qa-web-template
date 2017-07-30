@@ -1,4 +1,4 @@
-Feature: Sample
+Feature: Search
 
   @ui @pageobject
   Scenario: Should be able to search for a product from the input box
@@ -40,3 +40,15 @@ Feature: Sample
     Given a non-existing listing
     When a request is made to search for the listing by Id
     Then a listing not found message is returned
+
+  @api
+  Scenario Outline: Search listings - should return an error status for an invalid listing Id
+    Given an invalid listing Id: <Listing Id>
+    When a request is made to search for the listing by Id
+    Then an unsuccessful response is returned with status <Status Code> and message <Message>
+
+    Examples:
+      | Listing Id             | Status Code | Message                                             | Test Description |
+      | test                   | 400         | Expected int value for 'listing_id' (got 'string'). | non numeric      |
+      | 1111111111111111111111 | 400         | Expected int value for 'listing_id' (got 'string'). | too long         |
+      |                        | 404         | The supplied uri doesn't map to a valid command     | empty            |

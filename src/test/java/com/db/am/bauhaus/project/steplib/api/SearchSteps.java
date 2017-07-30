@@ -27,7 +27,7 @@ public class SearchSteps extends ScenarioSteps {
 
     @Step
     public void search_listing_by_id() {
-        Response response = HTTPUtil.get(Endpoints.LISTINGS +Serenity.sessionVariableCalled(SessionVar.LISTING_ID));
+        Response response = HTTPUtil.get(Endpoints.LISTINGS + Serenity.sessionVariableCalled(SessionVar.LISTING_ID));
         Serenity.setSessionVariable(SessionVar.RESPONSE).to(response);
     }
 
@@ -49,5 +49,12 @@ public class SearchSteps extends ScenarioSteps {
                 (String)Serenity.sessionVariableCalled(SessionVar.LISTING_ID));
         assertThat(response.getBody().asString(), equalTo(expectedError));
     }
-    
+
+    @Step
+    public void verify_status_and_message(int status, String message) {
+        Response response = Serenity.sessionVariableCalled(SessionVar.RESPONSE);
+        assertThat(response.statusCode(), is(status));
+        assertThat(response.getBody().asString(), equalTo(message));
+
+    }
 }

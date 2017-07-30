@@ -23,6 +23,7 @@ public class HTTPUtil extends ScenarioSteps{
         Response response = given()
                 .baseUri(BASE_URI)
                 .queryParam("api_key", API_KEY)
+                .urlEncodingEnabled(false)
                 .filter(RequestLoggingFilter.logRequestTo(System.out))
                 .filter(ResponseLoggingFilter.logResponseTo(System.out))
                 .when()
