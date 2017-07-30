@@ -1,4 +1,4 @@
-package com.db.am.bauhaus.project.steplib;
+package com.db.am.bauhaus.project.steplib.ui;
 
 import com.db.am.bauhaus.project.SessionVar;
 import com.db.am.bauhaus.project.pages.MainSearchPage;
@@ -47,4 +47,6 @@ public class SearchSteps extends ScenarioSteps {
     public void search_from_icons(String iconName) {
          mainSearchPage.searchFromIcons(iconName);
     }
+
+
 }

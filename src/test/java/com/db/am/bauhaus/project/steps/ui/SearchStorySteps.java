@@ -1,10 +1,10 @@
-package com.db.am.bauhaus.project.steps;
+package com.db.am.bauhaus.project.steps.ui;
 
 import com.db.am.bauhaus.project.SearchFor;
 import com.db.am.bauhaus.project.SearchTarget;
 import com.db.am.bauhaus.project.SessionVar;
 import com.db.am.bauhaus.project.pages.MainSearchPage;
-import com.db.am.bauhaus.project.steplib.SearchSteps;
+import com.db.am.bauhaus.project.steplib.ui.SearchSteps;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -47,7 +47,6 @@ public class SearchStorySteps {
     public void goto_landing_page_screenplay(String theUser) {
         theActorCalled(theUser).attemptsTo(Open.browserOn().the(mainSearchPage));
     }
-
     @When("^he searches for a product from the input box$")
     public void search_from_input_box() {
         searchSteps.search_from_input_box();
@@ -58,7 +57,6 @@ public class SearchStorySteps {
         List<String> menuItemList = Arrays.asList(menuItems.split("/"));
         searchSteps.search_from_drop_down_menu(menuItemList);
     }
-
     @When("^he searches for a product '(.*)' from the icons$")
     public void search_from_icons(String iconName) {
         searchSteps.search_from_icons(iconName);
@@ -73,7 +71,6 @@ public class SearchStorySteps {
     public void verify_search_result() {
         searchSteps.verify_result_for_top_categories();
     }
-
     @Then("^the result should be displayed on page with header$")
     public void verify_search_result_on_page() {
         searchSteps.verify_result_for_all_categories();
@@ -87,4 +84,6 @@ public class SearchStorySteps {
                 seeThat("the all categories header ", the(SearchTarget.ALL_CATEGORIES_HEADER), containsText(searchText))
         );
     }
+
+
 }
