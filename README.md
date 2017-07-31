@@ -38,4 +38,12 @@ To run scenarios tagged as ui AND NOT wip on Safari:
 
 View the report at target/site/serenity/index.html
 
+# Comments
+## Improvements & suggestions
+- Serenity reports to include request and response details to provide further insight to viewers of the report
+- Assuming an Agile tool i.e. JIRA is being used, the framework may be integrated with JIRA and scenarios tagged with related JIRA ID
+- Abstracting out and externalising UI locators and URLs to properties (or environment variables) file can assist maintainability
+
+
+
 
